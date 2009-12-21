@@ -15,8 +15,6 @@ require 'stringio'
 }
 
 def setup
-  @buffers = []
-
   Weechat::Command.new("ruby_eval", "evals a ruby expression") do |buffer, message|
     eval_rb(buffer, message, :puts)
   end
