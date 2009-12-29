@@ -36,7 +36,7 @@ include Weechat::Helper
   :license     => "GPL3",
   :description => "A script for dimming lines of people you consider unimportant.",
   :version     => "0.0.1",
-  :gem_version => "0.0.1",
+  :gem_version => "0.0.3",
 }
 
 @config = Script::Config.new(
@@ -98,6 +98,7 @@ def setup
         end
       end
     end
-    line.to_s
+
+    line
   end
 end
