@@ -20,6 +20,8 @@
 #
 ###############################################################################
 # History:
+#   2010-01-01, Dominik Honnef <dominikho@gmx.net>:
+#       v0.0.3: properly colorize prefices, too
 #   2009-12-24, Dominik Honnef <dominikho@gmx.net>:
 #       v0.0.2: white- and blacklists now work per server
 #   2009-12-24, Dominik Honnef <dominikho@gmx.net>:
@@ -38,7 +40,7 @@ include Weechat::Helper
   :author      => "Dominik Honnef <dominikho@gmx.net>",
   :license     => "GPL3",
   :description => "Colorize nicks as they are being mentioned in messages.",
-  :version     => "0.0.2",
+  :version     => "0.0.3",
   :gem_version => "0.0.3",
 }
 
@@ -52,7 +54,16 @@ include Weechat::Helper
 # FIXME do not colorize in URLs
 # FIXME do not break existing colors of a message
 
-VALID_NICK = /([-a-zA-Z0-9\[\]\\`_^\{|\}]+)/
+PREFIX_COLORS = {
+  '@' => 'nicklist_prefix1',
+  '~' => 'nicklist_prefix1',
+  '&' => 'nicklist_prefix1',
+  '!' => 'nicklist_prefix1',
+  '%' => 'nicklist_prefix2',
+  '+' => 'nicklist_prefix3',
+}
+
+VALID_NICK = /([@~&!%+])?([-a-zA-Z0-9\[\]\\`_^\{|\}]+)/
 
 def allowed_channel?(channel)
   begin
@@ -80,16 +91,20 @@ def setup
       reset = Weechat.get_color("reset")
 
       line.message.gsub!(VALID_NICK) { |m|
-        color = nil
-        if !@config.blacklist_nicks.include?(m) && m.size >= @config.min_nick_length && colors[m]
-          color = colors[m]
+        prefix, nick = $1 || "", $2
+        prefix_color = nil
+        nick_color   = nil
+        if !@config.blacklist_nicks.include?(nick) && nick.size >= @config.min_nick_length && colors[nick]
+          nick_color = colors[nick]
+          nick = nick_color + nick + reset
+
+          if PREFIX_COLORS.has_key?(prefix)
+            prefix_color = Weechat.color(PREFIX_COLORS[prefix])
+            prefix[0,0] = prefix_color
+          end
         end
 
-        if color
-          color + m + reset
-        else
-          m
-        end
+        prefix + nick
       }
     end
 
