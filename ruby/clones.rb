@@ -27,8 +27,6 @@
 
 require 'weechat'
 include Weechat
-include Script::Skeleton
-include Weechat::Helper
 
 @script = {
   :name        => "clones",
@@ -36,7 +34,7 @@ include Weechat::Helper
   :license     => "GPL3",
   :description => "Determines 'clones' i.e. users with the same hostmask.",
   :version     => "0.0.1",
-  :gem_version => "0.0.5",
+  :gem_version => "0.0.6",
 }
 
 @config = Script::Config.new(

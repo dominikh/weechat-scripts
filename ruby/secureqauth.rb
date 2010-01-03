@@ -29,8 +29,6 @@
 require 'weechat'
 require 'openssl'
 include Weechat
-include Script::Skeleton
-include Weechat::Helper
 
 @script = {
   :name        => "secureqauth",
@@ -38,7 +36,7 @@ include Weechat::Helper
   :license     => "GPL3",
   :description => "Securely identify with quakenet services.",
   :version     => "0.0.1",
-  :gem_version => "0.0.5",
+  :gem_version => "0.0.6",
 }
 
 # server => {:username, :password_hash}

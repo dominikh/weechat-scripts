@@ -1,8 +1,6 @@
 
 require 'weechat'
 include Weechat
-include Script::Skeleton
-include Weechat::Helper
 
 @script = {
   :name        => "input_length",
@@ -10,7 +8,7 @@ include Weechat::Helper
   :license     => "GPL3",
   :description => "Provides a bar item displaying the current length of the input",
   :version     => "0.0.1",
-  :gem_version => "0.0.5",
+  :gem_version => "0.0.6",
 }
 
 class InputLength < Bar::Item

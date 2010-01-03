@@ -27,8 +27,6 @@
 
 require 'weechat'
 include Weechat
-include Script::Skeleton
-include Weechat::Helper
 
 require 'pp'
 require 'stringio'
@@ -37,6 +35,7 @@ require 'stringio'
   :name => 'ruby_eval',
   :author => 'Dominik Honnef <dominikho@gmx.net>',
   :version => '0.0.1',
+  :gem_version => '0.0.6',
   :license => 'GPL3',
   :description => 'evals a given ruby expression',
 }

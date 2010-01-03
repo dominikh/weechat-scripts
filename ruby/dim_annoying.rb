@@ -27,8 +27,6 @@
 
 require 'weechat'
 include Weechat
-include Script::Skeleton
-include Weechat::Helper
 
 @script = {
   :name        => "dim_annoying",
@@ -36,7 +34,7 @@ include Weechat::Helper
   :license     => "GPL3",
   :description => "A script for dimming lines of people you consider unimportant.",
   :version     => "0.0.1",
-  :gem_version => "0.0.3",
+  :gem_version => "0.0.6",
 }
 
 @config = Script::Config.new(

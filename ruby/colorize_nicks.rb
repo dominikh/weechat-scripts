@@ -32,8 +32,6 @@
 
 require 'weechat'
 include Weechat
-include Script::Skeleton
-include Weechat::Helper
 
 @script = {
   :name        => "colorize_nicks",
@@ -41,7 +39,7 @@ include Weechat::Helper
   :license     => "GPL3",
   :description => "Colorize nicks as they are being mentioned in messages.",
   :version     => "0.0.3",
-  :gem_version => "0.0.3",
+  :gem_version => "0.0.6",
 }
 
 @config = Script::Config.new(
