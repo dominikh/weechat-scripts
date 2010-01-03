@@ -40,7 +40,7 @@ include Weechat::Helper
 }
 
 @config = Script::Config.new(
-                             'show_in_current_window'     => [Boolean, false]
+                             'show_in_current_buffer'     => [Boolean, false]
                              )
 
 
@@ -52,7 +52,7 @@ def setup
                 "channel"  => "The channel to scan. Defaults to the current one",
               },
               :completion => ["channel %(channels)"]) do |buffer, args|
-    msg_target = @config.show_in_current_window ? buffer : Weechat
+    msg_target = @config.show_in_current_buffer ? buffer : Weechat
 
     begin
       if args.empty?
